@@ -7,7 +7,7 @@ class PlayerKaiju(enemyJaeger):
 		self.images = [pygame.image.load("RSC/Kaiju/leatherback2.png"),
 						 pygame.image.load("RSC/Kaiju/leatherback3.png"),
 						 pygame.image.load("RSC/Kaiju/leatherback.png")]
-		self.facing = "up"
+		self.facing = "right"
 		self.changed = False
 		self.frame = 0
 		self.maxFrame = len(self.images) - 1
@@ -46,16 +46,6 @@ class PlayerKaiju(enemyJaeger):
 				self.frame += 1
 			else:
 				self.frame = 0
-		
-		if self.changed:	
-			if self.facing == "up":
-				self.images = self.upImages
-			elif self.facing == "down":
-				self.images = self.downImages
-			elif self.facing == "right":
-				self.images = self.rightImages
-			elif self.facing == "left":
-				self.images = self.leftImages
 			
 			self.image = self.images[self.frame]
 	
