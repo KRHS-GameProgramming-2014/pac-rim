@@ -75,3 +75,10 @@ class PlayerKaiju(enemyJaeger):
 			self.speedx = -self.maxSpeed
 		elif direction == "stop left":
 			self.speedx = 0
+			
+	def collideDots(self, dot):
+		if self != dot:
+			if self.rect.right > dot.rect.left and self.rect.left < dot.rect.right:
+				if self.rect.bottom > dot.rect.top and self.rect.top < dot.rect.bottom:
+					if (self.radius + dot.radius) > self.distance(dot.rect.center):
+						dot.living = False
