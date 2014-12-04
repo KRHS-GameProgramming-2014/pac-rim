@@ -17,11 +17,14 @@ class PlayerKaiju(enemyJaeger):
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect(center = self.rect.center)
 		self.maxSpeed = 10
+		self.pu = False
 			
 	def update(self, width, height):
 		Ball.update(self, width, height)
 		self.animate()
 		self.facingChanged = False
+		if self.pu = True:
+			self
 		
 	def collideWall(self, width, height):
 		if not self.didBounceX:
