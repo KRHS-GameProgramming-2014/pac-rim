@@ -4,9 +4,8 @@ from enemyJaeger import enemyJaeger
 class PlayerKaiju(enemyJaeger):
 	def __init__(self, pos):
 		Ball.__init__(self, "RSC/Kaiju/leatherback.png", [0,0], pos)
-		self.images = [pygame.image.load("RSC/Kaiju/leatherback2.png"),
-						 pygame.image.load("RSC/Kaiju/leatherback3.png"),
-						 pygame.image.load("RSC/Kaiju/leatherback.png")]
+		self.images = [pygame.image.load("RSC/Kaiju/leatherback.png"),
+						 pygame.image.load("RSC/Kaiju/leatherback2.png")]
 		self.facing = "right"
 		self.changed = False
 		self.frame = 0
