@@ -28,16 +28,13 @@ class Ball():
 		
 	def collideWall(self, width, height):
 		if not self.didBounceX:
-			#print "trying to hit Wall"
 			if self.rect.left < 0 or self.rect.right > width:
 				self.speedx = -self.speedx
 				self.didBounceX = True
-				#print "hit xWall"
 		if not self.didBounceY:
 			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = -self.speedy
 				self.didBounceY = True
-				#print "hit xWall"
 							
 	def collidePlayer(self, other):
 		if other.isPowered:

@@ -1,4 +1,4 @@
-python "playerKaiju.py"
+python "enemyJaeger.py"
 
 pause
 del "%0"

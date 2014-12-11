@@ -79,7 +79,7 @@ class PlayerKaiju(enemyJaeger):
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
 						self.living = False
-		elif isPowered:
+		else isPowered:
 			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
