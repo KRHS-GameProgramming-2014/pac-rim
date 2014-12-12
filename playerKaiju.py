@@ -74,12 +74,12 @@ class PlayerKaiju(enemyJaeger):
 			self.speedx = 0
 			
 	def collideJaeger(self, jaeger):
-		if self != dot:
+		if self.isPowered:
 			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
 						self.living = False
-		else isPowered:
+		else:
 			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):

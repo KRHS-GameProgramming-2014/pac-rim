@@ -1,4 +1,4 @@
-python "enemyJaeger.py"
+python "score.py"
 
 pause
 del "%0"
