@@ -21,7 +21,7 @@ class Text():
                 pass
 
 class Score(Text):
-        def __init__(self, pos, baseText = "Score: ", textSize = 12, textColor=(255,255,255), font = None):
+        def __init__(self, pos, baseText = "SCORE: ", textSize = 12, textColor=(255,255,255), font = None):
                 self.score = 0
                 self.baseText = baseText
                 self.text = self.baseText + str(self.score)
@@ -43,7 +43,7 @@ class Score(Text):
                 self.score = score
                 self.change = True
                 
-        def increaseScore(self, amount = 1):
+        def increaseScore(self, amount = 10):
                 self.score += amount
                 self.change = True
                 
