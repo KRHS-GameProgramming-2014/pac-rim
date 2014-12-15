@@ -1,5 +1,5 @@
 import pygame
-
+ 
 class Text():
         def __init__(self, pos, text = "", textSize = 12, textColor=(255,255,255), font = None):
                 self.text = text
