@@ -8,13 +8,12 @@ clock = pygame.time.Clock()
 
 height = 800
 width = 600
+size = width, height
 
-import pygame, math
+screen = pygame.display.set_mode(size)
 
-class Wall():
-	def __init__(self, tl, br):
-		self.image = pygame.image.load("Resources/Objects/Wall/Wall.png")
-		width = br[0] - tl[0]
-		height = br[1] - tl[1]
-		self.image = pygame.transform.scale(self.image, [width, height])	
-		self.rect = self.image.get_rect(topleft = tl)
+player = p([width/2, height/2])
+
+bgColor = r,g,b = 0, 0, 0
+
+screen = pygame.display.set_mode(size)
