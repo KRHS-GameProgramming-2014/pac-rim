@@ -22,8 +22,6 @@ class PlayerKaiju(enemyJaeger):
 		Ball.update(self, width, height)
 		self.animate()
 		self.facingChanged = False
-		if self.pu = True:
-			self
 		
 	def collideWall(self, width, height):
 		if not self.didBounceX:
@@ -37,7 +35,7 @@ class PlayerKaiju(enemyJaeger):
 	
 	def animate(self):
 		if self.waitCount < self.maxWait:
-			self.waitCount += 1
+			self.waitCount += 2
 		else:
 			self.waitCount = 0
 			self.facingChanged = True
@@ -76,8 +74,13 @@ class PlayerKaiju(enemyJaeger):
 			self.speedx = 0
 			
 	def collideJaeger(self, jaeger):
-		if self != dot:
+		if self.isPowered:
 			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
 						self.living = False
+		else:
+			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
+				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
+					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
+						self.living = True
