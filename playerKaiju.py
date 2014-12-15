@@ -1,5 +1,5 @@
 import pygame
-from enemyJaeger import enemyJaeger
+#from enemyJaeger import enemyJaeger
 
 class PlayerKaiju(enemyJaeger):
 	def __init__(self, pos):
@@ -85,5 +85,5 @@ class PlayerKaiju(enemyJaeger):
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
 						self.living = False
 						
-	def collideWall(self, width, height):
+	#def collideWall(self, width, height):
 		
