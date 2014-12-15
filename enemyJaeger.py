@@ -42,8 +42,11 @@ class Ball():
 				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
 					if (self.radius + other.radius) > self.distance(other.rect.center):
 						self.living = False
-		else self.living = True
-						
+		else:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						self.living = True		
 	
 	def distance(self, pt):
 		x1 = self.rect.center[0]
