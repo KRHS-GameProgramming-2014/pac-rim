@@ -78,9 +78,12 @@ class PlayerKaiju(enemyJaeger):
 			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
-						self.living = False
+						self.living = True
 		else:
 			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
 				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
 					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
-						self.living = True
+						self.living = False
+						
+	def collideWall(self, width, height):
+		
