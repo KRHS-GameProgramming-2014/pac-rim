@@ -1,8 +1,8 @@
 import pygame
 
 class Button():
-        def __init__(self, pos, image, clickedImage = "" ):
-                if clickedImage != "RSC/Other Images/Sheet.png":
+        def __init__(self, pos, image, clickedImage = "startclicked.png" ):
+                if clickedImage != "startunclicked.png":
                         self.baseImage =  pygame.image.load(image)
                         self.clickedImage =  pygame.image.load(clickedImage)
                 else:
