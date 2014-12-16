@@ -1,6 +1,6 @@
 import pygame, sys, random
-#from enemyJaeger import enemyJaeger
-#from playerKaiju import playerKaiju
+from enemyJaeger import enemyJaeger
+from playerKaiju import PlayerKaiju
 
 pygame.init()
 
@@ -11,6 +11,9 @@ height = 600
 size = width, height
 
 screen = pygame.display.set_mode(size)
+
+bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
+bgRect = bgImage.get_rect()
 
 while True:
 	for event in pygame.event.get():
@@ -34,7 +37,11 @@ while True:
 			if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 				player.go("stop left")
 	
-	bgColor = [pygame.image.load("RSC/Background/Sheet.png")]
-
+    for ball in balls:
+		screen.blit(ball.image, ball.rect)
+	screen.blit(player.image, player.rect)
+	screen.blit(timer.image, timer.rect)
+	screen.blit(score.image, score.rect)
 	pygame.display.flip()
 	clock.tick(60)
+

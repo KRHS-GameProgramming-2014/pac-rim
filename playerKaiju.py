@@ -3,7 +3,7 @@ from enemyJaeger import enemyJaeger
 
 class PlayerKaiju():
 	def __init__(self, pos):
-		Ball.__init__(self, "RSC/Kaiju/leatherback.png", [0,0], pos)
+		PlayerKaiju.__init__(self, "RSC/Kaiju/leatherback.png", [0,0], pos)
 		self.images = [pygame.image.load("RSC/Kaiju/leatherback.png"),
 						 pygame.image.load("RSC/Kaiju/leatherback2.png")]
 		self.facing = "right"
