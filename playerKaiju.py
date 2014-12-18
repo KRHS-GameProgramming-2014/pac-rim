@@ -1,25 +1,41 @@
 import pygame
-from enemyJaeger import enemyJaeger
 
 class PlayerKaiju():
 	def __init__(self, pos):
-		PlayerKaiju.__init__(self, "RSC/Kaiju/leatherback.png", [0,0], pos)
-		self.images = [pygame.image.load("RSC/Kaiju/leatherback.png"),
-						 pygame.image.load("RSC/Kaiju/leatherback2.png")]
+		self.upImages = [pygame.image.load("RSC/Kaiju/leatherback.png"),
+						pygame.image.load("RSC/Kaiju/leatherback2.png")]
+		self.downImages = [pygame.image.load("RSC/Kaiju/leatherback.png"),
+						pygame.image.load("RSC/Kaiju/leatherback2.png")]
+		self.leftImages = [pygame.image.load("RSC/Kaiju/leatherback.png"),
+						pygame.image.load("RSC/Kaiju/leatherback2.png")]
+		self.rightImages = [pygame.image.load("RSC/Kaiju/leatherback.png"),
+						pygame.image.load("RSC/Kaiju/leatherback2.png")]												
 		self.facing = "right"
 		self.changed = False
+		self.images = self.rightImages
 		self.frame = 0
 		self.maxFrame = len(self.images) - 1
 		self.waitCount = 0
-		self.images = self.upImages
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
-		self.rect = self.image.get_rect(center = self.rect.center)
+		self.rect = self.image.get_rect()
 		self.maxSpeed = 10
 		self.pu = False
+		self.speedx = 0
+		self.speedy = 0
+		self.speed = [self.speedx, self.speedy]
+		self.place(pos)
+		self.didBounceX = False
+		self.didBounceY = False
+		self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
+		self.living = True
 			
 	def update(self, width, height):
-		Ball.update(self, width, height)
+		self.didBounceX = False
+		self.didBounceY = False
+		self.speed = [self.speedx, self.speedy]
+		self.move()
+		self.collideWall(width, height)
 		self.animate()
 		self.facingChanged = False
 		
@@ -32,6 +48,12 @@ class PlayerKaiju():
 			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = 0
 				self.didBounceY = True
+	
+	def place(self, pos):
+		self.rect.center = pos
+	
+	def move(self):
+		self.rect = self.rect.move(self.speed)
 	
 	def animate(self):
 		if self.waitCount < self.maxWait:
