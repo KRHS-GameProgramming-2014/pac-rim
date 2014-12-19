@@ -19,7 +19,7 @@ class PlayerKaiju():
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect()
-		self.maxSpeed = 10
+		self.maxSpeed = 2
 		self.pu = False
 		self.speedx = 0
 		self.speedy = 0
@@ -57,7 +57,7 @@ class PlayerKaiju():
 	
 	def animate(self):
 		if self.waitCount < self.maxWait:
-			self.waitCount += 2
+			self.waitCount += .55
 		else:
 			self.waitCount = 0
 			self.facingChanged = True
