@@ -20,8 +20,8 @@ bgRect = bgImage.get_rect()
 
 player = PlayerKaiju([width/2, height/2])
 
-#balls = []
-#balls += [Ball("images/Ball/ball.png", [4,5], [100, 125])]
+#enemyJaeger = []
+#enemyJaeger += [enemyJaeger("RSC/Ball/ball.png", [4,5], [100, 125])]
 
 run = True
 
