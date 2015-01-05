@@ -1,6 +1,6 @@
 import pygame, sys, random
-from enemyJaeger import enemyJaeger
-from playerKaiju import playerKaiju
+#from enemyJaeger import enemyJaeger
+#from playerKaiju import playerKaiju
 
 pygame.init()
 
