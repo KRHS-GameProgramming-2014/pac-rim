@@ -1,6 +1,6 @@
 import pygame, math
 
-class Ball():
+class enemyJaeger():
 	def __init__(self, image, speed = [0,0], pos = [0,0]):
 		self.image = pygame.image.load(image)
 		self.rect = self.image.get_rect()
