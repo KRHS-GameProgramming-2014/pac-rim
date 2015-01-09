@@ -20,9 +20,6 @@ bgRect = bgImage.get_rect()
 
 player = PlayerKaiju([width/2, height/2])
 
-#balls = []
-#balls += [Ball("images/Ball/ball.png", [4,5], [100, 125])]
-
 run = True
 
 while True:
@@ -47,35 +44,12 @@ while True:
 					player.go("stop down")
 				if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 					player.go("stop left")
-			
-		#if len(balls) < 10:
-			#if random.randint(0, 1*60) == 0:
-				#balls += [Ball("images/Ball/ball.png",
-						  #[random.randint(0,10), random.randint(0,10)],
-						  #[random.randint(100, width-100), random.randint(100, height-100)])
-						  #]
-						  
-		
+	
 		player.update(width, height)
-		
-		#for ball in balls:
-			#ball.update(width, height)
-			
-		#for bully in balls:
-			#for victem in balls:
-				#bully.collideBall(victem)
-			#if bully.collidePlayer(player):
-				#score.increaseScore(1)
-		
-		#for ball in balls:
-			#if not ball.living:
-				#balls.remove(ball)
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
-		#for ball in balls:
-			#screen.blit(ball.image, ball.rect)
 		screen.blit(player.image, player.rect)
 		pygame.display.flip()
 		clock.tick(60)
