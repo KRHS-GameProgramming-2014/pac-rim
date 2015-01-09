@@ -2,7 +2,7 @@ import pygame, math
 
 class enemyJaeger():
 	def __init__(self, image, speed = [0,0], pos = [0,0]):
-		self.image = pygame.image.load("RSC/Jaeger/)
+		self.image = pygame.image.load("RSC/Jaeger/gipsy.png")
 		self.rect = self.image.get_rect()
 		self.speedx = speed[0]
 		self.speedy = speed[1]

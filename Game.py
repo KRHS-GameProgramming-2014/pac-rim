@@ -13,7 +13,6 @@ size = width, height
 bgColor = r,g,b = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
-
 bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
 bgImage = pygame.transform.scale(bgImage, size)
 bgRect = bgImage.get_rect()
@@ -21,7 +20,7 @@ bgRect = bgImage.get_rect()
 player = PlayerKaiju([width/2, height/2])
 
 #enemyJaeger = []
-#enemyJaeger += [enemyJaeger("RSC/Ball/ball.png", [4,5], [100, 125])]
+#enemyJaeger += [enemyJaeger("RSC/Jaeger/Gispy.png", [4,5], [100, 125])]
 
 run = True
 
@@ -74,8 +73,8 @@ while True:
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
-		#for ball in balls:
-			#screen.blit(ball.image, ball.rect)
+		#for enemyJaeger in enemyJaeger:
+			#screen.blit(enemyJaeger.image, enemyJaeger.rect)
 		screen.blit(player.image, player.rect)
 		pygame.display.flip()
 		clock.tick(60)
