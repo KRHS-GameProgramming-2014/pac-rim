@@ -8,6 +8,7 @@ class Wall():
 		self.image = pygame.transform.scale(self.image, [width, height])	
 		self.rect = self.image.get_rect(topleft = tl)
 		
+		
 class Shatterdome():
 	def __init__(self, tl, br):
 		self.image = pygame.image.load("RSC/Background/shatterdome.png")
