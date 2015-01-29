@@ -3,10 +3,9 @@ from playerKaiju import PlayerKaiju
 from enemyJaeger import enemyJaeger
 
 pygame.init()
-
 clock = pygame.time.Clock()
 
-width = 800 
+width = 800
 height = 600
 size = width, height
 
@@ -20,6 +19,8 @@ bgRect = bgImage.get_rect()
 
 player = PlayerKaiju([width/2, height/2])
 
+enemy = []
+enemy += [enemyJaeger("Looooooook At Thiiiiiiiiis", [4,5], [100,125])]
 run = True
 
 while True:
@@ -44,12 +45,23 @@ while True:
 					player.go("stop down")
 				if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 					player.go("stop left")
+					
+		if len(enemy) < 10:
+			if random.randint(0, 1*60) == 0:
+				 enemy += [enemyJaeger(image,
+								[random.randint(0,10), random.randint(0,10)],
+								[random.randint(100, width-100), random.randint(100, height-100)])
+								]
 	
 		player.update(width, height)
+		for enemyJaeger in enemy:
+			enemyJaeger.update(width, height)
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
+		for enemyJaeger in enemy:
+			screen.blit(enemyJaeger.images, enemyJaeger.rect)
 		screen.blit(player.image, player.rect)
 		pygame.display.flip()
 		clock.tick(60)
