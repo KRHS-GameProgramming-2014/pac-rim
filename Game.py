@@ -20,7 +20,7 @@ bgRect = bgImage.get_rect()
 player = PlayerKaiju([width/2, height/2])
 
 enemy = []
-enemy += [enemyJaeger("Looooooook At Thiiiiiiiiis", [4,5], [100,125])]
+enemy += [enemyJaeger([4,5], [100,125])]
 run = True
 
 while True:
@@ -49,9 +49,9 @@ while True:
 		if len(enemy) < 10:
 			if random.randint(0, 1*60) == 0:
 				 enemy += [enemyJaeger(image,
-								[random.randint(0,10), random.randint(0,10)],
-								[random.randint(100, width-100), random.randint(100, height-100)])
-								]
+									[random.randint(0,10), random.randint(0,10)],
+									[random.randint(100, width-100), random.randint(100, height-100)])
+									]
 	
 		player.update(width, height)
 		for enemyJaeger in enemy:
@@ -61,7 +61,7 @@ while True:
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
 		for enemyJaeger in enemy:
-			screen.blit(enemyJaeger.images, enemyJaeger.rect)
+			screen.blit(enemyJaeger.image, enemyJaeger.rect)
 		screen.blit(player.image, player.rect)
 		pygame.display.flip()
 		clock.tick(60)

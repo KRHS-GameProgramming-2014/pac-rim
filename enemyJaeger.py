@@ -1,8 +1,8 @@
 import pygame, math
 
 class enemyJaeger():
-	def __init__(self, image, speed = [0,0], pos = [0,0]):
-		self.images = [pygame.image.load("RSC/Jaeger/gipsy.png"),
+	def __init__(self, speed = [0,0], pos = [0,0]):
+		self.images = [pygame.image.load("RSC/Jaeger/gispy.png"),
 					   pygame.image.load("RSC/Jaeger/gipsy2.png"),
 					   pygame.image.load("RSC/Jaeger/gipsy3.png")]
 		self.changed = True
