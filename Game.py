@@ -20,6 +20,9 @@ bgRect = bgImage.get_rect()
 
 player = PlayerKaiju([width/2, height/2])
 
+jaeger = []
+jaeger += [enemyJaeger("RSC/Jaeger/gipsy.png", [4,5], [100, 125])]
+
 run = True
 
 while True:
@@ -44,9 +47,10 @@ while True:
 					player.go("stop down")
 				if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 					player.go("stop left")
-	
+
+
+
 		player.update(width, height)
-		
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
