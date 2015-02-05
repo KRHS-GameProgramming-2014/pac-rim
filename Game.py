@@ -1,6 +1,6 @@
 import pygame, sys, random
 from playerKaiju import PlayerKaiju
-from enemyJaeger import enemyJaeger
+from enemyJaeger import EnemyJaeger
 
 pygame.init()
 
@@ -21,7 +21,7 @@ bgRect = bgImage.get_rect()
 player = PlayerKaiju([width/2, height/2])
 
 enemy = []
-enemy += [enemyJaeger([4,5], [100,125])]
+enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", [4,5], [100,125])]
 run = True
 
 while True:
@@ -49,10 +49,10 @@ while True:
 					
 		if len(enemy) < 10:
 			if random.randint(0, 1*60) == 0:
-				 enemy += [enemyJaeger(image,
-									[random.randint(0,10), random.randint(0,10)],
-									[random.randint(100, width-100), random.randint(100, height-100)])
-									]
+				 enemy += [EnemyJaeger("RSC/Jaeger/gispy.png",
+							[random.randint(0,10), random.randint(0,10)],
+							[random.randint(100, width-100), random.randint(100, height-100)])
+							]
 	
 		player.update(width, height)
 		for enemyJaeger in enemy:
