@@ -29,23 +29,23 @@ class EnemyJaeger():
 	def collideWall(self, width, height):
 		if not self.didBounceX:
 			if self.rect.left < 0 or self.rect.right > width:
-				self.speedx = 0
+				self.speedx = -self.speedx
 				self.didBounceX = True
 		if not self.didBounceY:
 			if self.rect.top < 0 or self.rect.bottom > height:
-				self.speedy = 0
+				self.speedy = -self.speedy
 				self.didBounceY = True
 							
 	def collidePlayer(self, other):
-		if other.isPowered:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
+		if PlayerKaiju.isPowered:
+			if self.rect.right > PlayerKaiju.rect.left and self.rect.left < PlayerKaiju.rect.right:
+				if self.rect.bottom > PlayerKaiju.rect.top and self.rect.top < PlayerKaiju.rect.bottom:
+					if (self.radius + PlayerKaiju.radius) > self.distance(PlayerKaiju.rect.center):
 						self.living = False
 		else:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
+			if self.rect.right > PlayerKaiju.rect.left and self.rect.left < PlayerKaiju.rect.right:
+				if self.rect.bottom > PlayerKaiju.rect.top and self.rect.top < PlayerKaiju.rect.bottom:
+					if (self.radius + PlayerKaiju.radius) > self.distance(PlayerKaiju.rect.center):
 						self.living = True		
 	
 	def distance(self, pt):
