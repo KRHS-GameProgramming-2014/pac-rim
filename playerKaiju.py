@@ -19,7 +19,7 @@ class PlayerKaiju():
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect()
-		self.maxSpeed = 5
+		self.maxSpeed = 4
 		self.pu = False
 		self.speedx = 0
 		self.speedy = 0
@@ -95,17 +95,6 @@ class PlayerKaiju():
 		elif direction == "stop left":
 			self.speedx = 0
 			
-	def collideJaeger(self, jaeger):
-		if self.isPowered:
-			if self.rect.right > EnemyJaeger.rect.left and self.rect.left < EnemyJaeger.rect.right:
-				if self.rect.bottom > EnemyJaeger.rect.top and self.rect.top < EnemyJaeger.rect.bottom:
-					if (self.radius + EnemyJaeger.radius) > self.distance(EnemyJaeger.rect.center):
-						self.living = True
-		else:
-			if self.rect.right > EnemyJaeger.rect.left and self.rect.left < EnemyJaeger.rect.right:
-				if self.rect.bottom > EnemyJaeger.rect.top and self.rect.top < EnemyJaeger.rect.bottom:
-					if (self.radius + EnemyJaeger.radius) > self.distance(EnemyJaeger.rect.center):
-						self.living = False
 						
 	def collideWall(self, width, height):
 		if not self.didBounceX:

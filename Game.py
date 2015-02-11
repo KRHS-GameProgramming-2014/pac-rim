@@ -22,9 +22,9 @@ player = PlayerKaiju([width/2, height/2])
 
 enemy = []
 enemy2 = enemy3 = enemy
-enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", [4,5], [100,125])]
-enemy2 += [EnemyJaeger("RSC/Jaeger/chernoWIP.png", [4,4], [190,125])]
-enemy3 += [EnemyJaeger("RSC/Jaeger/strikerWIP.png", [8,9], [134,165])]
+enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", [5,5], [100,125])]
+enemy2 += [EnemyJaeger("RSC/Jaeger/chernoWIP.png", [2,2], [190,125])]
+enemy3 += [EnemyJaeger("RSC/Jaeger/strikerWIP.png", [7,7], [134,165])]
 run = True
 
 while True:
@@ -50,7 +50,7 @@ while True:
 				if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 					player.go("stop left")
 					
-		if len(enemy) < 2:
+		if len(enemy) < 3:
 			if random.randint(0, 1*60) == 0:
 				 enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", "RSC/Jaeger/chernoWIP", "RSC/Jaeger/strikerWIP.png",
 							[random.randint(0,10), random.randint(0,10)],
