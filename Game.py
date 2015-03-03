@@ -1,18 +1,21 @@
 import pygame, sys, random
 from playerKaiju import PlayerKaiju
 from enemyJaeger import EnemyJaeger
+#from wall import Wall
 
 pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800 
-height = 600
+width = 896 
+height = 640
 size = width, height
 
 bgColor = r,g,b = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
+
+#walls = [Wall([10,10], [50,45])]
 
 bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
 bgImage = pygame.transform.scale(bgImage, size)
@@ -60,12 +63,20 @@ while True:
 		player.update(width, height)
 		for enemyJaeger in enemy:
 			enemyJaeger.update(width, height)
+			
+		for EnemyJaeger in enemy:
+			if not EnemyJaeger.living:
+				enemy.remove(EnemyJaeger)
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
 		for enemyJaeger in enemy:
 			screen.blit(enemyJaeger.image, enemyJaeger.rect)
+		#for wall in walls:
+		#	for player in players:
+		#		if block.playerCollide(player):
+		#			player.go("stop")
 		screen.blit(player.image, player.rect)
 		pygame.display.flip()
 		clock.tick(60)

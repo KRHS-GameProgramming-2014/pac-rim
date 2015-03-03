@@ -46,7 +46,8 @@ class EnemyJaeger():
 			if self.rect.right > PlayerKaiju.rect.left and self.rect.left < PlayerKaiju.rect.right:
 				if self.rect.bottom > PlayerKaiju.rect.top and self.rect.top < PlayerKaiju.rect.bottom:
 					if (self.radius + PlayerKaiju.radius) > self.distance(PlayerKaiju.rect.center):
-						self.living = True		
+						self.living = True
+						PlayerKaiju.living = False
 	
 	def distance(self, pt):
 		x1 = self.rect.center[0]
