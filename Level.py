@@ -1,76 +1,37 @@
 import pygame, math, sys, time, os
-from playerKaiju import PlayerKaiju
-from enemyJaeger import EnemyJaeger
-
-class Block():
-	def __init__ (self, image, pos, size):
-		self.baseImage = pygame.image.load(image)
-		if size != None:
-			self.resize(size)
-		else:
-			self.image = self.baseImage
-		self.rect = self.image.get_rect()
-		self.place(pos)
-	def place(self, pos):
-		self.rect.center = pos
-		
-	def resize (self, size):
-		self.image = pygame.transform.scale(self.baseImage, size)
-		
-	def distance(self, pt):
-		x1 = self.rect.center[0]
-		y1 = self.rect.center[0]
-		y2 = pt[0]
-		x2 = pt[0]
-		return math.sqrt (((x2-x1)**2) + ((y2-y1)**2))
-		
-	def playerCollide(self, other):
-		if (self.rect.right > other.rect.left
-			and self.rect.left < other. rect.right):
-			if (self.rect.bottom > other.rect.top and
-				self.rect.top < other.rect.bottom):
-				return True
-		return False
-		
-	def jaegerCollide(self, other):
-		if (self.rect.right > other.rect.left
-			and self.rect.left < other.rect.right):
-			if (self.rect.bottom > other.rect.top and
-				self.rect.top < other.rect.bottom):
-				#print "Collide With: ", other
-				return True
-		return False
-				
-	def update(self):
-		pass
-
+from Block import Block
+from LevelChangeBlock import LevelChangeBlock
+from Player import Player
+from Ghost import Ghost
 
 class Level():
-    def __init__(self, level, screenSize):
+    def __init__(self, level, names, screenSize):
         self.screenSize = screenSize
+        self.names = names
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
         self.hardBlocks = []
         
         #self.levelChangeBlocks = []
-        self.jaegers = []
+        #self.ghosts = []
         
+        self.players = []
         
         self.blockSize = 64
         self.level = level
         self.load(level)
         
-    """
+
     def killOldLevels(self, timeInSeconds):
-        for f in os.listdir("RSC/Levels/"):
+        for f in os.listdir("RSC/Maps/"):
             if f[-5:] == ".tngs":
                 print f, time.time() - os.path.getmtime("RSC/Maps/"+f), timeInSeconds
                 if (time.time() - os.path.getmtime("RSC/Maps/"+f)) > timeInSeconds:
                     print f
                     os.remove("RSC/Maps/"+f)
             
-
+    """
     def unload(self):
         things = []
         line = []
@@ -111,8 +72,8 @@ class Level():
     def load(self, level):  
         self.level = level
         print self.level
-        geoMap="RSC/Levels/"+ level +".lvl"
-        thingMap="RSC/Levels/"+ level +".tng"
+        geoMap="RSC/Maps/"+ level +".lvl"
+        thingMap="RSC/Maps/"+ level +".tng"
 
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
@@ -131,7 +92,7 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "#":
-                    self.hardBlocks += [Block("RSC/Background/mapblock2.png",
+                    self.hardBlocks += [Block("RSC/Block/bush.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                     (self.blockSize,self.blockSize))]
                     self.blocks += [self.hardBlocks[-1]]
@@ -157,10 +118,11 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
 #-------Blocks  
-				if c == "@":
-					self.player = PlayerKaiju([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])
-				if c == "j":
-					self.jaegers += [EnemyJaeger("RSC/Jaeger/gispy.png", 
-										[random.randint(0,10), random.randint(0,10)],
-										[(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)]
-									]
+                if c == "@":
+                    if len(self.players) == 0:
+                        if len(self.names) > 0:
+                            daName = self.names.pop()
+                            self.players += [Player(daName,  [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+				#if c == "G":
+                #    self.ghosts += [Ghost(
+                #                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
