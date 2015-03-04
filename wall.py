@@ -1,48 +1,48 @@
-import pygame, math, sys, time, os
+import pygame, math, sys, time, os, random
 from playerKaiju import PlayerKaiju
 from enemyJaeger import EnemyJaeger
 
 class Block():
-	def __init__ (self, image, pos, size):
-		self.baseImage = pygame.image.load(image)
-		if size != None:
-			self.resize(size)
-		else:
-			self.image = self.baseImage
-		self.rect = self.image.get_rect()
-		self.place(pos)
-	def place(self, pos):
-		self.rect.center = pos
-		
-	def resize (self, size):
-		self.image = pygame.transform.scale(self.baseImage, size)
-		
-	def distance(self, pt):
-		x1 = self.rect.center[0]
-		y1 = self.rect.center[0]
-		y2 = pt[0]
-		x2 = pt[0]
-		return math.sqrt (((x2-x1)**2) + ((y2-y1)**2))
-		
-	def playerCollide(self, other):
-		if (self.rect.right > other.rect.left
-			and self.rect.left < other. rect.right):
-			if (self.rect.bottom > other.rect.top and
-				self.rect.top < other.rect.bottom):
-				return True
-		return False
-		
-	def jaegerCollide(self, other):
-		if (self.rect.right > other.rect.left
-			and self.rect.left < other.rect.right):
-			if (self.rect.bottom > other.rect.top and
-				self.rect.top < other.rect.bottom):
-				#print "Collide With: ", other
-				return True
-		return False
-				
-	def update(self):
-		pass
+    def __init__ (self, image, pos, size):
+        self.baseImage = pygame.image.load(image)
+        if size != None:
+            self.resize(size)
+        else:
+            self.image = self.baseImage
+        self.rect = self.image.get_rect()
+        self.place(pos)
+    def place(self, pos):
+        self.rect.center = pos
+        
+    def resize (self, size):
+        self.image = pygame.transform.scale(self.baseImage, size)
+        
+    def distance(self, pt):
+        x1 = self.rect.center[0]
+        y1 = self.rect.center[0]
+        y2 = pt[0]
+        x2 = pt[0]
+        return math.sqrt (((x2-x1)**2) + ((y2-y1)**2))
+        
+    def playerCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other. rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                return True
+        return False
+        
+    def jaegerCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False
+                
+    def update(self):
+        pass
 
 
 class Level():
@@ -106,8 +106,8 @@ class Level():
             self.levelChangeBlocks.remove(self.levelChangeBlocks[0])
         while len(self.ghosts) > 0:
             self.ghosts.remove(self.ghosts[0])
-	"""
-	
+    """
+    
     def load(self, level):  
         self.level = level
         print self.level
@@ -155,12 +155,11 @@ class Level():
             newlines += [newline]
 
         for y, line in enumerate(newlines):
-            for x, c in enumerate(line):
-#-------Blocks  
-				if c == "@":
-					self.player = PlayerKaiju([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])
-				if c == "j":
-					self.jaegers += [EnemyJaeger("RSC/Jaeger/gispy.png", 
-										[random.randint(0,10), random.randint(0,10)],
-										[(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)]
-									]
+            for x, c in enumerate(line): 
+                if c == "@":
+                    self.player = PlayerKaiju([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])
+                if c == "j":
+                    self.jaegers += [EnemyJaeger("RSC/Jaeger/gispy.png", 
+                                        [random.randint(0,10), random.randint(0,10)],
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)]
+                                    )]
