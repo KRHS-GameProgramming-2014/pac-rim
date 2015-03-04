@@ -3,7 +3,7 @@ from playerKaiju import PlayerKaiju
 from enemyJaeger import EnemyJaeger
 
 class Block():
-	def __init__ (self, image, pos, sizee):
+	def __init__ (self, image, pos, size):
 		self.baseImage = pygame.image.load(image)
 		if size != None:
 			self.resize(size)
@@ -46,33 +46,31 @@ class Block():
 
 
 class Level():
-    def __init__(self, level, names, screenSize):
+    def __init__(self, level, screenSize):
         self.screenSize = screenSize
-        self.names = names
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
         self.hardBlocks = []
         
         #self.levelChangeBlocks = []
-        #self.ghosts = []
+        self.jaegers = []
         
-        self.players = []
         
         self.blockSize = 64
         self.level = level
         self.load(level)
         
-
+    """
     def killOldLevels(self, timeInSeconds):
-        for f in os.listdir("RSC/Maps/"):
+        for f in os.listdir("RSC/Levels/"):
             if f[-5:] == ".tngs":
                 print f, time.time() - os.path.getmtime("RSC/Maps/"+f), timeInSeconds
                 if (time.time() - os.path.getmtime("RSC/Maps/"+f)) > timeInSeconds:
                     print f
                     os.remove("RSC/Maps/"+f)
             
-    """
+
     def unload(self):
         things = []
         line = []
@@ -113,8 +111,8 @@ class Level():
     def load(self, level):  
         self.level = level
         print self.level
-        geoMap="RSC/Maps/"+ level +".lvl"
-        thingMap="RSC/Maps/"+ level +".tng"
+        geoMap="RSC/Levels/"+ level +".lvl"
+        thingMap="RSC/Levels/"+ level +".tng"
 
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
@@ -133,7 +131,7 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "#":
-                    self.hardBlocks += [Block("RSC/Block/bush.png",
+                    self.hardBlocks += [Block("RSC/Background/mapblock2.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                     (self.blockSize,self.blockSize))]
                     self.blocks += [self.hardBlocks[-1]]
@@ -159,11 +157,10 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
 #-------Blocks  
-                if c == "@":
-                    if len(self.players) == 0:
-                        if len(self.names) > 0:
-                            daName = self.names.pop()
-                            self.players += [Player(daName,  [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
-				#if c == "G":
-                #    self.ghosts += [Ghost(
-                #                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+				if c == "@":
+					self.player = PlayerKaiju([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])
+				#if c == "j":
+                 #   self.jaegers += [EnemyJaeger("RSC/Jaeger/gispy.png", 
+					#					[random.randint(0,10), random.randint(0,10)],
+					#					[(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)]
+					#				]
