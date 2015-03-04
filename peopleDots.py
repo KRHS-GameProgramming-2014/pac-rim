@@ -1,5 +1,5 @@
 import pygame, math
-from playerKaiju import playerKaiju
+from playerKaiju import PlayerKaiju
 
 class PeopleDots():
 	def __init__(self, image, speed = [0,0], pos = [0,0]):

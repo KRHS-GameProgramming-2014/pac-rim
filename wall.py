@@ -1,18 +1,41 @@
-import pygame, math
+import pygame, math, sys
 
-class Wall():
-	def __init__(self, tl, br):
-		self.image = pygame.image.load("RSC/Background/mapblock.png")
-		width = br[0] - tl[0]
-		height = br[1] - tl[1]
-		self.image = pygame.transform.scale(self.image, [width, height])	
-		self.rect = self.image.get_rect(topleft = tl)
-		
-		
-class Shatterdome():
-	def __init__(self, tl, br):
-		self.image = pygame.image.load("RSC/Background/shatterdome.png")
-		width = br[0] - tl[0]
-		height = br[1] - tl[1]
-		self.image = pygame.transform.scale(self.image, [width, height])
-		self.rect = self. image.get_rect(topleft = tl)
+class WallBlock():
+	def __init__(self, image, pos, size):
+        self.baseImage = pygame.image.load(image)
+        if size != None:
+            self.resize(size)
+        else:
+            self.image = self.baseImage
+        self.rect = self.image.get_rect()
+        self.place(pos)
+    def place(self, pos):
+        self.rect.center = pos
+        
+    def resize (self, size):
+        self.image = pygame.transform.scale(self.baseImage, size)
+    
+    def distance(self, pt):
+        x1 = self.rect.center[0]
+        y1 = self.rect.center[0]
+        y2 = pt[0]
+        x2 = pt[0]
+        return math.sqrt (((x2-x1)**2) + ((y2-y1)**2))
+    
+    def playerCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False
+
+    def demonCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False
