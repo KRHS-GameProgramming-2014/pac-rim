@@ -48,6 +48,18 @@ class PlayerKaiju():
 			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = 0
 				self.didBounceY = True
+				
+	def collideJaeger(self, other):
+		if self != other:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						self.living = False				
+		else:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						self.living = True					
 	
 	def place(self, pos):
 		self.rect.center = pos
@@ -65,7 +77,6 @@ class PlayerKaiju():
 				self.frame += 1
 			else:
 				self.frame = 0
-			
 			self.image = self.images[self.frame]
 	
 	def go(self, direction):
@@ -95,17 +106,6 @@ class PlayerKaiju():
 		elif direction == "stop left":
 			self.speedx = 0
 			
-						
-	def collideWall(self, width, height):
-		if not self.didBounceX:
-			if self.rect.left < 0 or self.rect.right > width:
-				self.speedx = 0
-				self.didBounceX = True
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.speedy = 0
-				self.didBounceY = True
-						
 	def distance(self, pt):
 		x1 = self.rect.center[0]
 		y1 = self.rect.center[1]

@@ -1,5 +1,6 @@
 import pygame, math
 
+
 class EnemyJaeger():
 	def __init__(self, image, speed = [0,0], pos = [0,0]):
 		self.image = pygame.image.load(image)
@@ -35,18 +36,16 @@ class EnemyJaeger():
 			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = -self.speedy
 				self.didBounceY = True
-							
+						
 	def collidePlayer(self, other):
-		if PlayerKaiju.isPowered:
-			if self.rect.right > PlayerKaiju.rect.left and self.rect.left < PlayerKaiju.rect.right:
-				if self.rect.bottom > PlayerKaiju.rect.top and self.rect.top < PlayerKaiju.rect.bottom:
-					if (self.radius + PlayerKaiju.radius) > self.distance(PlayerKaiju.rect.center):
-						self.living = False
+		if self != other:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						self.living = True
 		else:
-			if self.rect.right > PlayerKaiju.rect.left and self.rect.left < PlayerKaiju.rect.right:
-				if self.rect.bottom > PlayerKaiju.rect.top and self.rect.top < PlayerKaiju.rect.bottom:
-					if (self.radius + PlayerKaiju.radius) > self.distance(PlayerKaiju.rect.center):
-						self.living = True		
+			self.living = False	
+	
 	
 	def distance(self, pt):
 		x1 = self.rect.center[0]

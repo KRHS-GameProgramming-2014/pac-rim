@@ -22,9 +22,9 @@ player = PlayerKaiju([width/2, height/2])
 
 enemy = []
 enemy2 = enemy3 = enemy
-enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", [5,5], [100,125])]
-enemy2 += [EnemyJaeger("RSC/Jaeger/chernoWIP.png", [2,2], [190,125])]
-enemy3 += [EnemyJaeger("RSC/Jaeger/strikerWIP.png", [7,7], [134,165])]
+enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", [5,3], [100,125])]
+enemy2 += [EnemyJaeger("RSC/Jaeger/chernoWIP.png", [2,1], [190,125])]
+enemy3 += [EnemyJaeger("RSC/Jaeger/strikerWIP.png", [7,9], [134,165])]
 run = True
 
 while True:
