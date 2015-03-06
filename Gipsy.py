@@ -15,4 +15,3 @@ class GipsyDanger(EnemyJaeger):
         self.rightImages = [pygame.image.load("RSC/Jaeger/gispy2.png"),
                             pygame.image.load("RSC/Jaeger/gispy3.png")]
 
-RSC/Jaeger/gispy3.png

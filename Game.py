@@ -7,8 +7,8 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800 
-height = 600
+width = 896
+height = 640
 size = width, height
 
 bgColor = r,g,b = 0, 0, 0
