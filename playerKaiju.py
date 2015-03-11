@@ -19,7 +19,7 @@ class PlayerKaiju():
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect()
-		self.maxSpeed = 4
+		self.maxSpeed = 2
 		self.pu = False
 		self.speedx = 0
 		self.speedy = 0
@@ -48,18 +48,7 @@ class PlayerKaiju():
 			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = 0
 				self.didBounceY = True
-				
-	def collideJaeger(self, other):
-		if self != other:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
-						self.living = False				
-		else:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
-						self.living = True					
+								
 	
 	def place(self, pos):
 		self.rect.center = pos

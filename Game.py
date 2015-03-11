@@ -2,8 +2,9 @@ import pygame, sys, random
 from playerKaiju import PlayerKaiju
 from enemyJaeger import EnemyJaeger
 from wall import Block, Level
-
+from MainMenu import Button
 pygame.init()
+win = False
 
 clock = pygame.time.Clock()
 
@@ -15,6 +16,14 @@ bgColor = r,g,b = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
+
+bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
+bgRect = bgImage.get_rect()
+
+playButton = Button([width/2, height-350], 
+                                     "RSC/menues/button.png", 
+                                     "RSC/menues/buttonpressed.png")
+
 bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
 bgImage = pygame.transform.scale(bgImage, size)
 bgRect = bgImage.get_rect()
@@ -23,11 +32,29 @@ level = Level("Level", size)
 
 player = level.player
 
-
 enemy = []
 enemy += level.jaegers
-run = True
+run = False
 while True:
+	
+	while not run:
+            for event in pygame.event.get():
+                    if event.type == pygame.QUIT: sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_RETURN:
+                                    run = True
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                            playButton.click(event.pos)
+                    if event.type == pygame.MOUSEBUTTONUP:
+                            if playButton.release(event.pos):
+                                    run = True
+            bgColor = r,g,b
+            screen.fill(bgColor)
+            screen.blit(bgImage, bgRect)
+            screen.blit(playButton.image, playButton.rect)
+            pygame.display.flip()
+            clock.tick(60)
+	
 	while run:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT: sys.exit()
