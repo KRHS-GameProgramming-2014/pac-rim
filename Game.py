@@ -17,6 +17,7 @@ bgColor = r,g,b = 0, 0, 0
 screen = pygame.display.set_mode(size)
 
 
+
 bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
 bgRect = bgImage.get_rect()
 
@@ -84,13 +85,14 @@ while True:
 							[random.randint(100, width-100), random.randint(100, height-100)])
 							]
 		"""
+		
 		player.update(width, height)
-		for enemyJaeger in enemy:
-			enemyJaeger.update(width, height)
+		#for enemyJaeger in enemy:
+		#	enemyJaeger.update(width, height)
 			
-		for EnemyJaeger in enemy:
-			if not EnemyJaeger.living:
-				enemy.remove(EnemyJaeger)
+		#for EnemyJaeger in enemy:
+		#	if not EnemyJaeger.living:
+		#		enemy.remove(EnemyJaeger)
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)
