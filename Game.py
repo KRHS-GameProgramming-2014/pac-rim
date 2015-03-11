@@ -94,6 +94,11 @@ while True:
 		#	if not EnemyJaeger.living:
 		#		enemy.remove(EnemyJaeger)
 		
+		for block in level.hardBlocks:
+			for playerkaiju in PlayerKaiju:
+				if block.playerCollide(player):
+					player.go("stop")
+		
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
