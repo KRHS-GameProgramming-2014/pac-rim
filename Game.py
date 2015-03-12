@@ -61,6 +61,11 @@ while True:
 		for enemyJaeger in enemy:
 			enemyJaeger.update(width, height)
 			
+		for playerKaiju in player:
+			player.wallCollide(wall)
+			for enemyJaeger in enemy:
+				wall.jaegerCollide(enemyJaeger)
+			
 		for EnemyJaeger in enemy:
 			if not EnemyJaeger.living:
 				enemy.remove(EnemyJaeger)

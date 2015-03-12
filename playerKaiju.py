@@ -35,19 +35,19 @@ class PlayerKaiju():
 		self.didBounceY = False
 		self.speed = [self.speedx, self.speedy]
 		self.move()
-		self.collideWall(width, height)
+		print 
+		self.wallCollide(other)"???"
 		self.animate()
 		self.facingChanged = False
 		
-	def collideWall(self, width, height):
-		if not self.didBounceX:
-			if self.rect.left < 0 or self.rect.right > width:
-				self.speedx = 0
-				self.didBounceX = True
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.speedy = 0
-				self.didBounceY = True
+	def wallCollide(self, other):
+		if (self.rect.right > other.rect.left
+			and self.rect.left < other. rect.right):
+			if (self.rect.bottom > other.rect.top and
+				self.rect.top < other.rect.bottom):
+				self.speed = 0
+				self.collideWall = True
+		return False
 				
 	def collideJaeger(self, other):
 		if self != other:

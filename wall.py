@@ -29,7 +29,8 @@ class Block():
             and self.rect.left < other. rect.right):
             if (self.rect.bottom > other.rect.top and
                 self.rect.top < other.rect.bottom):
-                return True
+				other.speed = 0
+				other.collideWall = True
         return False
         
     def jaegerCollide(self, other):
