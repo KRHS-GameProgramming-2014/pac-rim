@@ -1,31 +1,61 @@
 import pygame, sys, random
 from playerKaiju import PlayerKaiju
-from enemyJaeger import enemyJaeger
-
+from enemyJaeger import EnemyJaeger
+from wall import Block, Level
+from MainMenu import Button
 pygame.init()
+win = False
 
 clock = pygame.time.Clock()
 
-width = 800 
-height = 600
+width = 896
+height = 640
 size = width, height
 
 bgColor = r,g,b = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
+
+
+bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
+bgRect = bgImage.get_rect()
+
+playButton = Button([width/2, height-350], 
+                                     "RSC/menues/button.png", 
+                                     "RSC/menues/buttonpressed.png")
+
 bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
 bgImage = pygame.transform.scale(bgImage, size)
 bgRect = bgImage.get_rect()
 
-player = PlayerKaiju([width/2, height/2])
+level = Level("Level", size)
 
-#balls = []
-#balls += [Ball("images/Ball/ball.png", [4,5], [100, 125])]
+player = level.player
 
-run = True
-
+enemy = []
+enemy += level.jaegers
+run = False
 while True:
+	
+	while not run:
+            for event in pygame.event.get():
+                    if event.type == pygame.QUIT: sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_RETURN:
+                                    run = True
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                            playButton.click(event.pos)
+                    if event.type == pygame.MOUSEBUTTONUP:
+                            if playButton.release(event.pos):
+                                    run = True
+            bgColor = r,g,b
+            screen.fill(bgColor)
+            screen.blit(bgImage, bgRect)
+            screen.blit(playButton.image, playButton.rect)
+            pygame.display.flip()
+            clock.tick(60)
+	
 	while run:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT: sys.exit()
@@ -47,35 +77,36 @@ while True:
 					player.go("stop down")
 				if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 					player.go("stop left")
-			
-		#if len(balls) < 10:
-			#if random.randint(0, 1*60) == 0:
-				#balls += [Ball("images/Ball/ball.png",
-						  #[random.randint(0,10), random.randint(0,10)],
-						  #[random.randint(100, width-100), random.randint(100, height-100)])
-						  #]
-						  
+		"""			
+		if len(enemy) < 3:
+			if random.randint(0, 1*60) == 0:
+				 enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", "RSC/Jaeger/chernoWIP", "RSC/Jaeger/strikerWIP.png",
+							[random.randint(0,10), random.randint(0,10)],
+							[random.randint(100, width-100), random.randint(100, height-100)])
+							]
+		"""
 		
 		player.update(width, height)
-		
-		#for ball in balls:
-			#ball.update(width, height)
+		#for enemyJaeger in enemy:
+		#	enemyJaeger.update(width, height)
 			
-		#for bully in balls:
-			#for victem in balls:
-				#bully.collideBall(victem)
-			#if bully.collidePlayer(player):
-				#score.increaseScore(1)
+		for playerKaiju in player:
+			player.wallCollide(wall)
+			for enemyJaeger in enemy:
+				wall.jaegerCollide(enemyJaeger)
 		
-		#for ball in balls:
-			#if not ball.living:
-				#balls.remove(ball)
+		for block in level.hardBlocks:
+			for playerkaiju in PlayerKaiju:
+				if block.playerCollide(player):
+					player.go("stop")
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)
 		screen.blit(bgImage, bgRect)
-		#for ball in balls:
-			#screen.blit(ball.image, ball.rect)
+		for enemyJaeger in enemy:
+			screen.blit(enemyJaeger.image, enemyJaeger.rect)
+		for block in level.blocks:
+			screen.blit(block.image, block.rect)
 		screen.blit(player.image, player.rect)
 		pygame.display.flip()
 		clock.tick(60)

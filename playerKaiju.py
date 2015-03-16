@@ -65,7 +65,6 @@ class PlayerKaiju():
 				self.frame += 1
 			else:
 				self.frame = 0
-			
 			self.image = self.images[self.frame]
 	
 	def go(self, direction):
@@ -95,18 +94,6 @@ class PlayerKaiju():
 		elif direction == "stop left":
 			self.speedx = 0
 			
-	def collideJaeger(self, jaeger):
-		if self.isPowered:
-			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
-				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
-					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
-						self.living = True
-		else:
-			if self.rect.right > jaeger.rect.left and self.rect.left < jaeger.rect.right:
-				if self.rect.bottom > jaeger.rect.top and self.rect.top < jaeger.rect.bottom:
-					if (self.radius + jaeger.radius) > self.distance(jaeger.rect.center):
-						self.living = False
-						
 	def distance(self, pt):
 		x1 = self.rect.center[0]
 		y1 = self.rect.center[1]
