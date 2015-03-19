@@ -1,7 +1,8 @@
 import pygame, sys, random
 from playerKaiju import PlayerKaiju
 from enemyJaeger import EnemyJaeger
-from wall import Block, Level
+from wall import Block
+from Level import Level
 from MainMenu import Button
 pygame.init()
 win = False
@@ -87,18 +88,19 @@ while True:
 		"""
 		
 		player.update(width, height)
-		#for enemyJaeger in enemy:
-		#	enemyJaeger.update(width, height)
+		for enemyJaeger in enemy:
+			enemyJaeger.update(width, height)
 			
-		for playerKaiju in player:
-			player.wallCollide(wall)
-			for enemyJaeger in enemy:
-				wall.jaegerCollide(enemyJaeger)
-		
 		for block in level.hardBlocks:
-			for playerkaiju in PlayerKaiju:
-				if block.playerCollide(player):
-					player.go("stop")
+			player.collideBlock(block)
+			for enemyJaeger in enemy:
+				enemyJaeger.collideBlock(block)
+		
+		
+		#for block in level.hardBlocks:
+		#	for playerkaiju in PlayerKaiju:
+		#		if block.playerCollide(player):
+		#			player.go("stop")
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)

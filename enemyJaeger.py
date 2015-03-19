@@ -21,7 +21,7 @@ class EnemyJaeger():
 		self.didBounceY = False
 		self.speed = [self.speedx, self.speedy]
 		self.move()
-		self.collideWall(width, height)
+		#self.collideWall(width, height)
 	
 	def animate(self):
 		if self.waitCount < self.maxWait:
@@ -38,15 +38,14 @@ class EnemyJaeger():
 	def move(self):
 		self.rect = self.rect.move(self.speed)
 		
-	def collideWall(self, width, height):
-		if not self.didBounceX:
-			if self.rect.left < 0 or self.rect.right > width:
+	def collideBlock(self, other):
+		if (self.rect.right > other.rect.left and self.rect.left < other. rect.right):
+			if (self.rect.bottom > other.rect.top and
+				self.rect.top < other.rect.bottom):
 				self.speedx = -self.speedx
-				self.didBounceX = True
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = -self.speedy
-				self.didBounceY = True
+				self.collideWall = True
+		return False
 						
 	def collidePlayer(self, other):
 		if PlayerKaiju.isPowered:
