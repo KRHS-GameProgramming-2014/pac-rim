@@ -16,26 +16,20 @@ bgColor = r,g,b = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
-
-
-bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
-bgRect = bgImage.get_rect()
-
-playButton = Button([width/2, height-350], 
+playButton = Button([width/2, height-425], 
                                      "RSC/menues/button.png", 
                                      "RSC/menues/buttonpressed.png")
 
-bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
+bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
 bgImage = pygame.transform.scale(bgImage, size)
 bgRect = bgImage.get_rect()
 
 level = Level("Level", size)
-
 player = level.player
-
 enemy = []
 enemy += level.jaegers
 run = False
+
 while True:
 	
 	while not run:
@@ -77,27 +71,10 @@ while True:
 					player.go("stop down")
 				if event.key == pygame.K_a or event.key == pygame.K_LEFT:
 					player.go("stop left")
-		"""			
-		if len(enemy) < 3:
-			if random.randint(0, 1*60) == 0:
-				 enemy += [EnemyJaeger("RSC/Jaeger/gispy.png", "RSC/Jaeger/chernoWIP", "RSC/Jaeger/strikerWIP.png",
-							[random.randint(0,10), random.randint(0,10)],
-							[random.randint(100, width-100), random.randint(100, height-100)])
-							]
-		"""
 		
 		player.update(width, height)
-		#for enemyJaeger in enemy:
-		#	enemyJaeger.update(width, height)
-			
-		#for EnemyJaeger in enemy:
-		#	if not EnemyJaeger.living:
-		#		enemy.remove(EnemyJaeger)
-		
-		for block in level.hardBlocks:
-			for playerkaiju in PlayerKaiju:
-				if block.playerCollide(player):
-					player.go("stop")
+		for enemyJaeger in enemy:
+			enemyJaeger.update(width, height)
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)

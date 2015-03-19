@@ -47,8 +47,7 @@ class PlayerKaiju():
 		if not self.didBounceY:
 			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = 0
-				self.didBounceY = True
-								
+				self.didBounceY = True							
 	
 	def place(self, pos):
 		self.rect.center = pos
@@ -94,7 +93,7 @@ class PlayerKaiju():
 			self.speedx = -self.maxSpeed
 		elif direction == "stop left":
 			self.speedx = 0
-			
+					
 	def distance(self, pt):
 		x1 = self.rect.center[0]
 		y1 = self.rect.center[1]

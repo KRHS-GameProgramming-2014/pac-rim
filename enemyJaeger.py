@@ -33,7 +33,7 @@ class EnemyJaeger():
 				self.frame += 1
 			else:
 				self.frame = 0
-			#self.image = self.images[self.frame]
+			self.image = self.images[self.frame]
 		
 	def move(self):
 		self.rect = self.rect.move(self.speed)

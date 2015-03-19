@@ -1,5 +1,5 @@
 import pygame, math, sys, time, os
-from Block import Block
+#from Block import Block
 from LevelChangeBlock import LevelChangeBlock
 from Player import Player
 from Ghost import Ghost
