@@ -15,7 +15,7 @@ class Level():
         self.jaegers = []
         
         
-        self.blockSize = 75
+        self.blockSize = 70
         self.level = level
         self.load(level)
         

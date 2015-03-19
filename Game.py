@@ -9,8 +9,8 @@ win = False
 
 clock = pygame.time.Clock()
 
-width = 896
-height = 640
+width = 978
+height = 700
 size = width, height
 
 bgColor = r,g,b = 0, 0, 0
