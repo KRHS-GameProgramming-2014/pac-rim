@@ -117,7 +117,8 @@ class Level():
                 if c == "@":
                     self.player = PlayerKaiju([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])
                 if c == "j":
+                    speeds = [[0,-5], [5,0], [0,5], [-5,0]]
                     self.jaegers += [EnemyJaeger("RSC/Jaeger/gispy.png", 
-                                        [random.randint(0,10), random.randint(0,10)],
+                                        speeds[random.randint(0,3)],
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)]
                                     )]
