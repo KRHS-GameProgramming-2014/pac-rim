@@ -20,7 +20,7 @@ bgColor = r,g,b = 0, 0, 0
 screen = pygame.display.set_mode(size)
 
 
-#test2
+#test3
 bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
 bgRect = bgImage.get_rect()
 
