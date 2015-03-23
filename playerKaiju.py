@@ -1,4 +1,5 @@
 import pygame
+from wall import Block
 
 class PlayerKaiju():
 	def __init__(self, pos):
@@ -9,7 +10,7 @@ class PlayerKaiju():
 		self.leftImages = [pygame.image.load("RSC/Kaiju/leatherback.png"),
 						pygame.image.load("RSC/Kaiju/leatherback2.png")]
 		self.rightImages = [pygame.image.load("RSC/Kaiju/leatherback.png"),
-						pygame.image.load("RSC/Kaiju/leatherback2.png")]												
+						pygame.image.load("RSC/Kaiju/leatherback2.png")]									
 		self.facing = "right"
 		self.changed = False
 		self.images = self.rightImages
@@ -35,13 +36,13 @@ class PlayerKaiju():
 		self.didBounceY = False
 		self.speed = [self.speedx, self.speedy]
 		self.move()
-		self.collideWall(width, height)
+		#self.collideWall(width, height)
 		self.animate()
 		self.facingChanged = False
 		
-	def collideWall(self, width, height):
-		if not self.didBounceX:
-			if self.rect.left < 0 or self.rect.right > width:
+	def collideBlock(self, other):
+		if (self.rect.right > other.rect.left and self.rect.left < other. rect.right):
+			if (self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom):
 				self.speedx = 0
 				self.didBounceX = True
 		if not self.didBounceY:

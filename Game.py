@@ -1,7 +1,8 @@
 import pygame, sys, random
 from playerKaiju import PlayerKaiju
 from enemyJaeger import EnemyJaeger
-from wall import Block, Level
+from wall import Block
+from Level import Level
 from MainMenu import Button
 pygame.init()
 win = False
@@ -16,11 +17,16 @@ bgColor = r,g,b = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
-playButton = Button([width/2, height-425], 
+
+
+bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
+bgRect = bgImage.get_rect()
+
+playButton = Button([width/2, height-350], 
                                      "RSC/menues/button.png", 
                                      "RSC/menues/buttonpressed.png")
 
-bgImage = pygame.image.load("RSC/menues/mainmenu.png").convert()
+bgImage = pygame.image.load("RSC/Background/Sheet.png").convert()
 bgImage = pygame.transform.scale(bgImage, size)
 bgRect = bgImage.get_rect()
 
@@ -75,6 +81,17 @@ while True:
 		player.update(width, height)
 		for enemyJaeger in enemy:
 			enemyJaeger.update(width, height)
+			
+		for block in level.hardBlocks:
+			player.collideBlock(block)
+			for enemyJaeger in enemy:
+				enemyJaeger.collideBlock(block)
+		
+		
+		#for block in level.hardBlocks:
+		#	for playerkaiju in PlayerKaiju:
+		#		if block.playerCollide(player):
+		#			player.go("stop")
 		
 		bgColor = r,g,b
 		screen.fill(bgColor)
