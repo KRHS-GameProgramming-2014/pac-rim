@@ -44,11 +44,9 @@ class PlayerKaiju():
 		if (self.rect.right > other.rect.left and self.rect.left < other. rect.right):
 			if (self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom):
 				self.speedx = 0
-				self.didBounceX = True
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = 0
-				self.didBounceY = True							
+				self.collideWall = True
+			return False		
 	
 	def place(self, pos):
 		self.rect.center = pos
