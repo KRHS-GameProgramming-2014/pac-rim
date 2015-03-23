@@ -1,4 +1,4 @@
-import pygame, math
+import pygame, math, random
 
 class EnemyJaeger():
 	def __init__(self, image, speed = [0,0], pos = [0,0]):
@@ -7,6 +7,14 @@ class EnemyJaeger():
 		self.speedx = speed[0]
 		self.speedy = speed[1]
 		self.speed = [self.speedx, self.speedy]
+		if self.speedx > 0:
+			self.facing = "right"
+		elif self.speedy < 0:
+			self.facing = "left"
+		elif self.speedy > 0:
+			self.facing = "down"
+		else:
+			self.facing = "up"
 		self.place(pos)
 		self.didBounceX = False
 		self.didBounceY = False
@@ -19,7 +27,16 @@ class EnemyJaeger():
 	def update(self, width, height):
 		self.didBounceX = False
 		self.didBounceY = False
-		self.speed = [self.speedx, self.speedy]
+		if self.facing == "right":
+			self.speed = [5,0]
+		elif self.facing == "left":
+			self.speed = [-5,0]
+		elif self.facing == "up":
+			self.speed = [0,-5]
+		elif self.facing == "down":
+			self.speed = [0,5]
+		self.speedx = self.speed[0]
+		self.speedy = self.speed[1]
 		self.move()
 		#self.collideWall(width, height)
 	
@@ -36,14 +53,27 @@ class EnemyJaeger():
 			self.image = self.images[self.frame]
 		
 	def move(self):
+		self.speed = [self.speedx, self.speedy]
 		self.rect = self.rect.move(self.speed)
 		
 	def collideBlock(self, other):
 		if (self.rect.right > other.rect.left and self.rect.left < other. rect.right):
-			if (self.rect.bottom > other.rect.top and
-				self.rect.top < other.rect.bottom):
+			if (self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom):
 				self.speedx = -self.speedx
 				self.speedy = -self.speedy
+				self.move()
+				self.move()
+				num = random.randint(0,1)
+				if self.facing == "up" or self.facing == "down":
+					if num == 0:
+						self.facing = "right"
+					else:
+						self.facing = "left"
+				if self.facing == "right" or self.facing == "left":
+					if num == 0:
+						self.facing = "up"
+					else:
+						self.facing = "down"
 				self.collideWall = True
 		return False
 						
